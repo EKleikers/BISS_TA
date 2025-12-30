@@ -5,7 +5,9 @@ const suggestionWrap = document.querySelector('.suggestion-wrap');
 const searchContainer = document.querySelector(".search-container");
 const radioButtons = document.querySelectorAll('input[name="options"]');
 
-
+const stop_words = new Set([
+	"and", "the", "is", "in", "a", "an", "are" ,"to", "of", "on"
+]);
 
 // Single-file MVC-style structure for demo purposes.
 
@@ -68,23 +70,54 @@ const model = {
 			return;
 		}
 
-		// Check direct synonyms first
 		const direct = this.synonyms[searchValue] || [];
-
-		// Check reverse lookup
 		const reverse = this.reverseSynonyms[searchValue] || [];
-
-		// Merge and deduplicate
 		let synonyms = [...new Set([...direct, ...reverse])];
 
-	
 		synonyms = synonyms.slice(0, 5);
 		view.showSuggestions(synonyms);
 	},
 
-	getExtendedSuggestions() {
-		console.log("getExtendedSuggestions");
-		//view.showExtendedSuggestions(filteredExtentions);
+	getTopWordsSuggestions() {
+		console.log("getTopWordsSuggestions");
+
+		const searchValue = helpers.normalize(searchInput.value);
+		if (!searchValue) {
+			view.clear();
+			return;
+		}
+
+		const wordCounts = {};
+
+		// Find all items with this tag
+		const matchingItems = this.data.filter(item =>
+			item.tags.some(tag => helpers.normalize(tag) === searchValue)
+		);
+
+		// Extract words from item.text and count frequencies
+		matchingItems.forEach(item => {
+			const words = helpers.extractWords(item.text);
+
+			words.forEach(word => {
+				wordCounts[word] = (wordCounts[word] || 0) + 1;
+			});
+		});
+
+		// Convert wordCounts into array of [word, count] pairs
+		const wordEntries = Object.entries(wordCounts);
+
+		// Sort by frequency 
+		wordEntries.sort((a, b) => {
+			return b[1] - a[1];
+		});
+
+		// Extract the words, discarding counts
+		const sortedWords = wordEntries.map(entry => entry[0]);
+
+		// Limit to top 10 
+		const topWords = sortedWords.slice(0, 10);
+
+		view.showSuggestions(topWords);
 	}
 };
 
@@ -129,8 +162,8 @@ const controller = {
 			case 'Synonyms':
 				model.getSynonymsSuggestions();
 				break;
-			case 'Extend':
-				model.getExtendedSuggestions();
+			case 'TopWords':
+				model.getTopWordsSuggestions();
 				break;
 			default:
 				model.getAutocompleteSuggestions();
@@ -145,6 +178,13 @@ const helpers = {
 			.toLowerCase()
 			.normalize("NFD")
 			.replace(/[\u0300-\u036f]/g, "");
+	},
+
+	extractWords(text) {
+		return this.normalize(text)
+			.replace(/[^\w\s]/g, "")
+			.split(/\s+/)
+			.filter(word => word.length > 1 && !stop_words.has(word));
 	},
 
 	getSelectedOption() {

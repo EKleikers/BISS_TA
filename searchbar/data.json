@@ -2,26 +2,26 @@
 	{
 		"id": 1,
 		"tags": [ "fruit", "food", "sweet" ],
-		"text": ""
+		"text": "Apples and oranges are sweet fruits. Eating fruit every day is healthy. Fresh fruit and juice are good for your health."
 	},
 	{
 		"id": 2,
 		"tags": [ "elephant", "animal", "wildlife" ],
-		"text": ""
+		"text": "Elephants are the largest land animals. Wildlife in Africa includes elephants, lions, and zebras. The animal kingdom is fascinating."
 	},
 	{
 		"id": 3,
 		"tags": [ "bookstore", "books", "shop" ],
-		"text": ""
+		"text": "The bookstore sells books of all kinds. Customers come to shop for novels, textbooks, and magazines. Books and reading are important for knowledge."
 	},
 	{
 		"id": 4,
 		"tags": [ "building", "architecture", "office" ],
-		"text": ""
+		"text": "Modern buildings have innovative architecture. Office buildings in the city are tall and impressive. Architecture and design shape the urban environment."
 	},
 	{
 		"id": 5,
 		"tags": [ "newspaper", "media", "press" ],
-		"text": ""
+		"text": "Newspapers report the latest news. Media outlets cover politics, sports, and culture. The press informs people about current events."
 	}
 ]
