@@ -3,6 +3,7 @@ const searchInput = document.querySelector("#search");
 const suggestionContainer = document.querySelector(".suggestions");
 const suggestionWrap = document.querySelector('.suggestion-wrap');
 const searchContainer = document.querySelector(".search-container");
+const radioButtons = document.querySelectorAll('input[name="options"]');
 
 // Single-file MVC-style structure for demo purposes.
 
@@ -12,40 +13,47 @@ const model = {
 
 	async loadData() {
 
+		console.log("model.LoadData()");
 		const response = await fetch("/././data.json");
 		this.data = await response.json();
 	},
 
 	getAutocompleteSuggestions() {
+		console.log("getAutocompletesSuggestions");
 
 		const searchValue = helpers.normalize(searchInput.value);
-		// start autocomplate after 3rd character in searchbar
+
 		if (searchValue.length < 3) {
-			view.clear(); 
+			view.clear();
 			return;
 		}
-		// flatten all tags
-		const allTags = this.data.flatMap(item => item.tags);
 
-		// make unique
+		const allTags = this.data.flatMap(item => item.tags);
 		const uniqueTags = [...new Set(allTags)];
 
-		// filter per tag
 		let filteredTags = uniqueTags.filter(tag =>
 			helpers.normalize(tag).includes(searchValue)
 		);
 
-		// sort alphabetically
 		filteredTags.sort();
-
-		// limit number list items
 		filteredTags = filteredTags.slice(0, 5);
 
 		view.showTagSuggestions(filteredTags);
+	},
+
+	getSynonymsSuggestions() {
+		console.log("getSynonymsSuggestions");
+		//view.showSynonymSuggestions(filteredSynonyms);
+	},
+
+	getExtendedSuggestions() {
+		console.log("getExtendedSuggestions");
+	//	//view.showExtendedSuggestions(filteredExtentions);
 	}
 };
 
 const view = {
+
 	showTagSuggestions(list) {
 		console.log("view.showTagSuggestions()");
 		this.clear();
@@ -68,33 +76,58 @@ const view = {
 		})
 	},
 
-	// empty and hide listitems
 	clear() {
 		suggestionContainer.innerHTML = "";
 		searchContainer.classList.remove("show");
-	},
+	}
 };
 
 const controller = {
 	handleKeyup() {
-		model.getAutocompleteSuggestions();
+
+		const selectedOption = helpers.getSelectedOption();
+		switch (selectedOption) {
+			case 'Autocomplete':
+				model.getAutocompleteSuggestions();
+				break;
+			case 'Synonyms':
+				model.getSynonymsSuggestions();
+				break;
+			case 'Extend':
+				model.getExtendedSuggestions();
+				break;
+			default:
+				model.getAutocompleteSuggestions();
+		}
 	},
 };
 
 const helpers = {
-	// case & diacritics insensitive
+
 	normalize(str) {
 		return str
 			.toLowerCase()
 			.normalize("NFD")
 			.replace(/[\u0300-\u036f]/g, "");
+	},
+
+	getSelectedOption() {
+		const checked = document.querySelector('input[name="options"]:checked');
+		return checked ? checked.value : 'Autocomplete';
 	}
 };
 
 async function init() {
 	console.log("init()");
 	await model.loadData();
+
 	searchInput.addEventListener("keyup", controller.handleKeyup);
+
+	radioButtons.forEach(radio => {
+		radio.addEventListener("change", controller.handleKeyup);
+	});
 }
 
 window.onload = init;
+
+

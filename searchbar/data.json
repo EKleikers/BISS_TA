@@ -1,22 +1,27 @@
 [
 	{
 		"id": 1,
-		"tags": [ "fruit", "food", "sweet" ]
+		"tags": [ "fruit", "food", "sweet" ],
+		"text": ""
 	},
 	{
 		"id": 2,
-		"tags": [ "elephant", "animal", "wildlife" ]
+		"tags": [ "elephant", "animal", "wildlife" ],
+		"text": ""
 	},
 	{
 		"id": 3,
-		"tags": [ "bookstore", "books", "shop" ]
+		"tags": [ "bookstore", "books", "shop" ],
+		"text": ""
 	},
 	{
 		"id": 4,
-		"tags": [ "building", "architecture", "office" ]
+		"tags": [ "building", "architecture", "office" ],
+		"text": ""
 	},
 	{
 		"id": 5,
-		"tags": [ "newspaper", "media", "press" ]
+		"tags": [ "newspaper", "media", "press" ],
+		"text": ""
 	}
 ]

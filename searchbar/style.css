@@ -85,3 +85,40 @@ body {
     .suggestions-wrap.show {
         display: block;
     }
+
+#radioContainer {
+    font-family: Arial, sans-serif;
+    color: gray;
+    margin: 50px auto;
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #263238;
+}
+
+.radio-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+#radioContainer label {
+    margin: 0;
+    cursor: pointer;
+}
+
+#radioContainer input[type="radio"]:checked + label {
+    color: #fff;
+    text-decoration-line: underline;
+}
+
+/* Media query for small screens */
+@media (max-width: 650px) {
+    #radioContainer {
+        flex-direction: column; 
+        align-items: center; 
+        width: 80%; 
+        gap: 10px;
+    }
+}
