@@ -6,7 +6,27 @@ const searchContainer = document.querySelector(".search-container");
 const radioButtons = document.querySelectorAll('input[name="options"]');
 
 const stop_words = new Set([
-	"and", "the", "is", "in", "a", "an", "are" ,"to", "of", "on"
+	// articles
+	"the", "this", "that", "these", "those",
+	// conjunctions
+	"and", "but", "if", "while", "although", "or",
+	// prepositions
+	"from", "over", "before", "between", "under", "around", "through",
+	"with", "about", "into", "after", "for", "of", "on", "in", "to",
+	// auxiliary & common verbs
+	"is", "are", "was", "were", "be", "been", "being",
+	"have", "has", "had", "do", "does", "did",
+	"can", "could", "should", "would", "may", "might",
+	"will", "shall",
+	// pronouns
+	"he", "she", "it", "we", "they",
+	"him", "her", "us", "them",
+	"my", "your", "his", "its", "our", "their",
+	// determiners & quantifiers
+	"some", "any", "each", "every", "all", "few", "many", "much", "most",
+	// adverbs & fillers
+	"very", "just", "also", "only", "even", "not", "no", "yes",
+	"so", "than", "too", "as"
 ]);
 
 // Single-file MVC-style structure for demo purposes.
@@ -19,14 +39,12 @@ const model = {
 
 	async loadData() {
 
-		console.log("model.LoadData()");
 		const response = await fetch("/././data.json");
 		this.data = await response.json();
 	},
 
 	async loadSynonyms() {
 
-		console.log("model.LoadSynonyms()");
 		const response = await fetch("/././synonyms.json");
 		this.synonyms = await response.json();
 
@@ -40,7 +58,6 @@ const model = {
 	},
 
 	getAutocompleteSuggestions() {
-		console.log("getAutocompletesSuggestions");
 
 		const searchValue = helpers.normalize(searchInput.value);
 
@@ -50,20 +67,24 @@ const model = {
 		}
 
 		const allTags = this.data.flatMap(item => item.tags);
-		const uniqueTags = [...new Set(allTags)];
+		const tagCounts = {};
 
-		let filteredTags = uniqueTags.filter(tag =>
-			helpers.normalize(tag).includes(searchValue)
-		);
+		allTags.forEach(tag => {
+			if (helpers.normalize(tag).includes(searchValue)) {
+				tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+			}
+		});
 
-		filteredTags.sort();
+		let filteredTags = Object.entries(tagCounts);
+		const tagEntries = Object.entries(tagCounts)
+		tagEntries.sort((a, b) => b[1] - a[1]);
 		filteredTags = filteredTags.slice(0, 5);
 
 		view.showSuggestions(filteredTags);
 	},
 
 	getSynonymsSuggestions() {
-		console.log("getSynonymsSuggestions");
+
 		const searchValue = helpers.normalize(searchInput.value);
 		if (!searchValue) {
 			view.clear();
@@ -79,7 +100,6 @@ const model = {
 	},
 
 	getTopWordsSuggestions() {
-		console.log("getTopWordsSuggestions");
 
 		const searchValue = helpers.normalize(searchInput.value);
 		if (!searchValue) {
@@ -89,42 +109,32 @@ const model = {
 
 		const wordCounts = {};
 
-		// Find all items with this tag
 		const matchingItems = this.data.filter(item =>
 			item.tags.some(tag => helpers.normalize(tag) === searchValue)
 		);
 
-		// Extract words from item.text and count frequencies
 		matchingItems.forEach(item => {
 			const words = helpers.extractWords(item.text);
 
 			words.forEach(word => {
-				wordCounts[word] = (wordCounts[word] || 0) + 1;
+				if (!stop_words.has(word) && word.length > 2) {
+					wordCounts[word] = (wordCounts[word] || 0) + 1;
+				}
 			});
 		});
 
-		// Convert wordCounts into array of [word, count] pairs
 		const wordEntries = Object.entries(wordCounts);
-
-		// Sort by frequency 
-		wordEntries.sort((a, b) => {
-			return b[1] - a[1];
-		});
-
-		// Extract the words, discarding counts
-		const sortedWords = wordEntries.map(entry => entry[0]);
-
-		// Limit to top 10 
-		const topWords = sortedWords.slice(0, 10);
-
-		view.showSuggestions(topWords);
+		const sortedEntries = wordEntries.sort((a, b) => b[1] - a[1]);
+		const topEntries = sortedEntries.slice(0, 5);
+	
+		view.showSuggestions(topEntries);
 	}
 };
 
 const view = {
 
 	showSuggestions(list) {
-		console.log("view.showSuggestions()");
+
 		this.clear();
 
 		if (!list.length) {
@@ -135,10 +145,20 @@ const view = {
 		}
 
 		list.forEach(listItem => {
+			let value;
+			let label;
+
+			if (Array.isArray(listItem)) {
+				value = listItem[0];
+				label = `${listItem[0]} (${listItem[1]})`; 
+			} else {
+				value = listItem;
+				label = listItem;
+			}
 			const li = document.createElement("li");
-			li.textContent = listItem;
+			li.textContent = label;
 			li.addEventListener("click", () => {
-				searchInput.value = listItem;
+				searchInput.value = value;
 				this.clear();
 			});
 			suggestionContainer.appendChild(li);
@@ -196,7 +216,7 @@ const helpers = {
 };
 
 async function init() {
-	console.log("init()");
+
 	await model.loadData();
 	await model.loadSynonyms();
 
