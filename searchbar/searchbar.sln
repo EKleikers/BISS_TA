@@ -23,6 +23,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "json", "json", "{D2F6C6CD-619B-4EC5-A5D3-D7DD60C1ED9D}"
 	ProjectSection(SolutionItems) = preProject
 		data.json = data.json
+		synonyms.json = synonyms.json
 	EndProjectSection
 EndProject
 Global

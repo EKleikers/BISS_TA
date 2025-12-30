@@ -1,0 +1,5 @@
+{
+	"animal": [ "creature", "wildlife", "fauna" ],
+	"dog": [ "canine", "puppy" ],
+	"orange": [ "color", "fruit" ]
+}
