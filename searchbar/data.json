@@ -1,17 +1,22 @@
 [
 	{
-		"tag": "fruit"
+		"id": 1,
+		"tags": [ "fruit", "food", "sweet" ]
 	},
 	{
-		"tag": "elephant"
+		"id": 2,
+		"tags": [ "elephant", "animal", "wildlife" ]
 	},
 	{
-		"tag": "bookstore"
+		"id": 3,
+		"tags": [ "bookstore", "books", "shop" ]
 	},
 	{
-		"tag": "building"
+		"id": 4,
+		"tags": [ "building", "architecture", "office" ]
 	},
 	{
-		"tag": "newspaper"
+		"id": 5,
+		"tags": [ "newspaper", "media", "press" ]
 	}
 ]

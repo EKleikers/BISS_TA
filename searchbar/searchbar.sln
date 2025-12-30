@@ -5,14 +5,35 @@ VisualStudioVersion = 17.14.36518.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
 	ProjectSection(SolutionItems) = preProject
-		app.js = app.js
-		data.json = data.json
 		searchbar.html = searchbar.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "css", "css", "{3EFDC0B4-ECCE-4C9F-808A-E01ED158DC98}"
+	ProjectSection(SolutionItems) = preProject
+		style.css = style.css
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "js", "js", "{E3135813-6FD6-4CEE-AF78-881820FF4C39}"
+	ProjectSection(SolutionItems) = preProject
+		app.js = app.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "json", "json", "{D2F6C6CD-619B-4EC5-A5D3-D7DD60C1ED9D}"
+	ProjectSection(SolutionItems) = preProject
+		data.json = data.json
 	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
+		{3EFDC0B4-ECCE-4C9F-808A-E01ED158DC98} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{E3135813-6FD6-4CEE-AF78-881820FF4C39} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{D2F6C6CD-619B-4EC5-A5D3-D7DD60C1ED9D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0BDC7368-70BA-4107-9AF5-8EEED4F6AAFF}
