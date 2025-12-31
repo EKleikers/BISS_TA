@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "tags": [ "apple", "fruit", "healthy" ],
+    "text": "Apples are healthy fruits. Eating apples every day keeps you energized. Fresh apple juice is refreshing."
+  },
+  {
+    "id": 2,
+    "tags": [ "banana", "fruit", "yellow" ],
+    "text": "Bananas are yellow fruits. Eating a banana is a quick snack. Banana smoothies are popular."
+  },
+  {
+    "id": 3,
+    "tags": [ "orange", "fruit", "citrus" ],
+    "text": "Oranges are citrus fruits rich in vitamin C. Orange juice is a common breakfast drink."
+  },
+  {
+    "id": 4,
+    "tags": [ "dog", "animal", "pet" ],
+    "text": "Dogs are loyal animals. Puppies are adorable pets. Taking care of a dog teaches responsibility."
+  },
+  {
+    "id": 5,
+    "tags": [ "cat", "animal", "pet" ],
+    "text": "Cats are independent animals. Kittens are playful and cute. Many people have cats as pets."
+  },
+  {
+    "id": 6,
+    "tags": [ "kitten", "cat", "cute" ],
+    "text": "Kittens are playful baby cats. They are very cute and fun to play with."
+  },
+  {
+    "id": 7,
+    "tags": [ "bookstore", "books", "shop" ],
+    "text": "Bookstores sell novels, textbooks, and magazines. Customers love browsing books. Reading books improves knowledge."
+  },
+  {
+    "id": 8,
+    "tags": [ "elephant", "animal", "wildlife" ],
+    "text": "Elephants are the largest land animals. Wildlife safaris often include elephants. Conservation of elephants is important."
+  },
+  {
+    "id": 9,
+    "tags": [ "architecture", "building", "office" ],
+    "text": "Modern office buildings feature innovative architecture. Architecture influences urban design. Skyscrapers are examples of office architecture."
+  },
+  {
+    "id": 10,
+    "tags": [ "newspaper", "media", "press" ],
+    "text": "The newspaper provides daily news. Media outlets report politics, sports, and culture. The press informs people about events."
+  }
+]

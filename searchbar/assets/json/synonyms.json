@@ -1,0 +1,12 @@
+{
+  "apple": [ "fruit", "healthy", "produce" ],
+  "banana": [ "fruit", "yellow", "snack" ],
+  "orange": [ "fruit", "citrus", "color" ],
+  "dog": [ "canine", "puppy", "pet" ],
+  "cat": [ "feline", "kitten", "pet" ],
+  "kitten": [ "cat", "cute", "feline" ],
+  "bookstore": [ "books", "shop", "library" ],
+  "elephant": [ "mammal", "animal", "wildlife" ],
+  "architecture": [ "building", "design", "structure" ],
+  "newspaper": [ "press", "media", "journal" ]
+}

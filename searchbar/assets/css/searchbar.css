@@ -1,0 +1,151 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.body-div {
+    background-color: #263238;
+    font-size: 18px;
+}
+
+.search-container,
+.submit-container {
+    margin: 50px auto;
+    border-radius: 25px;
+    position: relative;
+    background: #202124;
+    color: #FFF;
+}
+
+.search-container {
+    max-width: 50%;
+}
+
+#search {
+    width: 100%;
+    height: 50px;
+    background: #202124;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 0 40px 0 25px;
+    text-indent: 20px;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+}
+
+    #search:focus {
+        outline: none;
+    }
+
+.search-icon {
+    position: absolute;
+    top: 13px;
+    right: 20px;
+}
+
+    .search-icon i {
+        color: grey;
+        font-size: 22px;
+    }
+
+.suggestions {
+    list-style: none;
+}
+
+    .suggestions li {
+        padding: 6px 10px 6px 30px;
+        border-bottom: 1px solid darkgrey;
+        cursor: pointer;
+        background: #303134;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        transition: all 0.1s linear;
+    }
+
+        .suggestions li:last-child {
+            border-bottom: none;
+        }
+
+        .suggestions li:hover {
+            color: #303134;
+            background: gray;
+        }
+
+        .suggestions li:active {
+            background: #0078D7;
+        }
+
+.suggestions-wrap {
+    display: none;
+}
+
+    .suggestions-wrap.show {
+        display: block;
+    }
+
+#radioContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
+    margin: 50px auto;
+    font-family: Arial, sans-serif;
+    color: gray;
+    background-color: #263238;
+}
+
+.radio-item {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+#radioContainer label {
+    cursor: pointer;
+}
+
+#radioContainer input[type="radio"]:checked + label {
+    color: #fff;
+    text-decoration: underline;
+}
+
+@media (max-width: 650px) {
+    #radioContainer {
+        flex-direction: column;
+        align-items: center;
+        width: 80%;
+        gap: 10px;
+    }
+}
+
+.submit-container {
+    max-width: 150px;
+    min-width: 100px;
+}
+
+#searchSubmit {
+    width: 100%;
+    height: 50px;
+    background: #263238;
+    color: grey;
+    border: 2px solid grey;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+}
+
+    #searchSubmit:hover {
+        background: #202124;
+        color: grey;
+    }
+
+    #searchSubmit:active {
+        background: #0078D7;
+        color: #303134;
+    }
